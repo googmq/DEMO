@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.minqi</groupId>
-    <artifactId>DEMO</artifactId>
+    <artifactId>major-consumer</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>DEMO</name>
-    <description>DEMO</description>
+    <name>major-consumer</name>
+    <description>major-consumer</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,7 +23,7 @@
         <moses-framework.version>1.0.11</moses-framework.version>
         <maven-archetype.version>2.4</maven-archetype.version>
         <!--请修修改这里，设置项目名称-->
-        <project-id>DEMO</project-id>
+        <project-id>major-consumer</project-id>
     </properties>
 
     <dependencies>
@@ -105,6 +105,11 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
         </dependency>
     </dependencies>
 
