@@ -1,0 +1,41 @@
+server:
+  port: 8887
+  undertow:
+    io-threads: 2
+    worker-threads: 200
+
+app:
+  datasource:
+    name: yingxiaobao_appointment
+    host: localhost
+    username: root
+    password: 123456
+
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  application:
+    name: DEMO
+  profiles:
+    include:
+    - web
+    - locale
+  datasource:
+    name: ${app.datasource.name}
+    url: jdbc:mysql://${app.datasource.host}/${app.datasource.name}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: ${app.datasource.username}
+    password: ${app.datasource.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    cn.vpclub: DEBUG
+  pattern:
+    console: "%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36})  - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: logs/application.log
+
