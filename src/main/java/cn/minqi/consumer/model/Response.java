@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 /**
  * Response
- * Created by johnd on 7/17/17.
  */
 @Data
 public class Response implements Serializable {

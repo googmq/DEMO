@@ -8,9 +8,13 @@ import cn.minqi.consumer.service.IGoodsService;
 import cn.minqi.consumer.util.BackResponseUtil;
 import cn.minqi.consumer.util.ResponseConvert;
 import cn.minqi.consumer.util.ReturnCodeEnum;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.plugins.Page;
+
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -96,6 +100,24 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     */
     @Override
     public Page page(GoodsPageParam pageParam) {
-        return null;
+        Page<Goods> page = new Page<Goods>();
+
+        Page<Goods> pageResponse = null;
+        //封装条件
+        EntityWrapper<Goods> ew = new EntityWrapper<Goods>();
+
+        //针对分页判断
+        if (null != pageParam && null != pageParam.getPageNumber() && null != pageParam.getPageSize()) {
+            page.setCurrent(pageParam.getPageNumber());
+            page.setSize(pageParam.getPageSize());
+            pageResponse = this.selectPage(page, ew);
+        } else {
+            List<Goods> selectList = this.selectList(ew);
+            pageResponse = new Page<>();
+            pageResponse.setRecords(selectList);
+        }
+        //记录数
+        pageResponse.setTotal(this.selectCount(ew));
+        return pageResponse;
         }
 }

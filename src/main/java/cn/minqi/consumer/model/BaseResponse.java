@@ -10,7 +10,6 @@ import java.io.Serializable;
 /**
  * 接口返回基类
  *
- * Created by admin on 2016/3/10.
  */
 @MappedSuperclass
 @Getter
