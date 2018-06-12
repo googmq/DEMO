@@ -1,5 +1,5 @@
 server:
-  port: 8887
+  port: 8888
   undertow:
     io-threads: 2
     worker-threads: 200
@@ -13,6 +13,8 @@ app:
 
 spring:
   mvc:
+    favicon:
+      enabled: false
     view:
       prefix: /
       suffix: .html
