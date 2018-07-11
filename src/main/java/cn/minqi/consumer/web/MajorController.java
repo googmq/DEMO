@@ -5,6 +5,8 @@ import cn.minqi.consumer.entity.User;
 import cn.minqi.consumer.majorService.MajorService;
 import cn.minqi.consumer.model.BaseResponse;
 import cn.minqi.consumer.model.request.GoodsPageParam;
+import cn.minqi.consumer.util.CommonEnum;
+import cn.minqi.consumer.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import lombok.AllArgsConstructor;
@@ -60,8 +62,29 @@ public class MajorController {
     public BaseResponse register(@RequestBody User user) {
         log.info("register入口");
         log.info("register入参 :" + JSONObject.toJSONString(user));
+        if (StringUtil.isEmpty(user.getUserPhone())) {
+           return CommonEnum.CODE_2009.getRespBase("用户手机号");
+        }
+        if (StringUtil.isEmpty(user.getUserPassword())) {
+            return CommonEnum.CODE_2009.getRespBase("用户密码");
+        }
+        if (StringUtil.isEmpty(user.getUserEmail())) {
+            return CommonEnum.CODE_2009.getRespBase("用户邮箱");
+        }
+        if (StringUtil.isEmpty(user.getUserName())) {
+            return CommonEnum.CODE_2009.getRespBase("用户名称");
+        }
         BaseResponse response = majorService.register(user);
         log.info("register返回 :" + JSONObject.toJSONString(response));
+        return response;
+    }
+
+    @RequestMapping(value = "/leaveMessage ", method = RequestMethod.POST)
+    public BaseResponse leaveMessage(@RequestBody User user) {
+        log.info("leaveMessage入口");
+        log.info("leaveMessage入参 :" + JSONObject.toJSONString(user));
+        BaseResponse response = majorService.userLogin(user);
+        log.info("leaveMessage返回 :" + JSONObject.toJSONString(response));
         return response;
     }
 }
